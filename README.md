@@ -24,9 +24,13 @@ mlops_project/
 ├── mlops_cats_dogs_pipeline.ipynb  # Main notebook with all implementations
 ├── requirements.txt                 # Python dependencies
 ├── README.md                        # Project documentation
+├── TEAM_SETUP.md                    # Team collaboration guide
+├── DVC_REMOTE_SETUP.md             # DVC remote storage setup
 ├── .gitignore                       # Git ignore rules
 ├── dataset_metadata.json            # Dataset version info
 ├── data/
+│   ├── raw/
+│   │   └── PetImages.dvc           # DVC-tracked dataset (809 MB, 24,998 files)
 │   └── processed/                   # Processed datasets
 ├── models/
 │   ├── best_model.pt               # Best validation model
@@ -78,30 +82,15 @@ git clone <your-repo-url>
 cd mlops_project
 ```
 
-2. **Configure dataset path (Team Members)**
-
-**Option A: Create local_config.py (Recommended)**
+2. **Get dataset with DVC** (Automatic - No manual setup needed!)
 ```bash
-# Copy the example file
-copy local_config.example.py local_config.py  # Windows
-# cp local_config.example.py local_config.py  # Linux/Mac
+# If DVC remote is configured (see DVC_REMOTE_SETUP.md)
+dvc pull  # Downloads 809 MB dataset automatically
 
-# Edit local_config.py and update RAW_DATA_PATH
+# Otherwise, dataset is already in Git LFS or included in repository
 ```
 
-**Option B: Set environment variable**
-```bash
-# Windows
-$env:DATASET_PATH = "C:\your\path\to\PetImages"
-
-# Linux/Mac
-export DATASET_PATH="/your/path/to/PetImages"
-```
-
-**Option C: Use DVC (Best for teams)**
-```bash
-dvc pull  # Downloads dataset from remote storage
-```
+**Note**: The dataset path is already configured in the notebook to use `data/raw/PetImages`. No manual path setup required!
 
 3. **Create virtual environment**
 ```bash
@@ -129,26 +118,30 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 
-### For Team Lead: Setup DVC Remote
+### DVC Status
+✅ **Dataset tracked**: `data/raw/PetImages` (809 MB, 24,998 images)  
+✅ **DVC initialized**: Metadata in `data/raw/PetImages.dvc`  
+❌ **Remote storage**: Not configured yet
+
+### Setup DVC Remote (Optional - For Team Sharing)
+See [DVC_REMOTE_SETUP.md](DVC_REMOTE_SETUP.md) for detailed instructions.
+
+**Quick Setup (Google Drive - Recommended)**
 ```bash
-# Initialize DVC
-dvc init
+# 1. Create Google Drive folder and get folder ID
+# 2. Configure remote
+dvc remote add -d storage gdrive://YOUR_FOLDER_ID
+git add .dvc/config
+git commit -m "Add DVC remote"
 
-# Add dataset
-dvc add path/to/PetImages
-
-# Setup remote storage (choose one)
-dvc remote add -d gdrive gdrive://FOLDER_ID  # Google Drive
-# dvc remote add -d s3remote s3://bucket/path  # AWS S3
-
-# Push data to remote
+# 3. Push dataset
 dvc push
 
-# Commit DVC files
-git add .dvc PetImages.dvc .gitignore
-git commit -m "Setup DVC with dataset"
-git push
+# Team members can now pull
+dvc pull
 ```
+
+**Other options**: AWS S3, Azure Blob, SSH Server (see DVC_REMOTE_SETUP.md)
 
 ## 📓 Running the Notebook
 
