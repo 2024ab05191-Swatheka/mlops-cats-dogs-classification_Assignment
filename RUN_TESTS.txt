@@ -1,0 +1,35 @@
+
+# ============================================================
+# RUNNING UNIT TESTS
+# ============================================================
+
+# 1. Install pytest
+# ------------------
+pip install pytest pytest-cov
+
+# 2. Run all tests
+# ----------------
+pytest tests/ -v
+
+# Expected output:
+# tests/test_preprocessing.py::TestImagePreprocessing::test_image_resize PASSED
+# tests/test_preprocessing.py::TestImagePreprocessing::test_image_normalization PASSED
+# tests/test_inference.py::TestModelInference::test_model_output_shape PASSED
+# tests/test_inference.py::TestModelInference::test_softmax_probabilities PASSED
+# ... (more tests)
+
+# 3. Run with coverage report
+# ----------------------------
+pytest tests/ --cov=. --cov-report=html --cov-report=term
+
+# Opens coverage report in browser:
+# open htmlcov/index.html  (Mac/Linux)
+# start htmlcov/index.html (Windows)
+
+# 4. Run specific test file
+# --------------------------
+pytest tests/test_preprocessing.py -v
+
+# 5. Run specific test
+# --------------------
+pytest tests/test_preprocessing.py::TestImagePreprocessing::test_image_resize -v
