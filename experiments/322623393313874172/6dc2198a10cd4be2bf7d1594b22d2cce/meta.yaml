@@ -1,5 +1,5 @@
 artifact_uri: file:///C:\Users\swath\dataset\mlops_project\experiments/322623393313874172/6dc2198a10cd4be2bf7d1594b22d2cce/artifacts
-end_time: null
+end_time: 1771001874572
 entry_point_name: ''
 experiment_id: '322623393313874172'
 lifecycle_stage: active
@@ -9,6 +9,6 @@ source_name: ''
 source_type: 4
 source_version: ''
 start_time: 1770999965916
-status: 1
+status: 3
 tags: []
 user_id: swath
