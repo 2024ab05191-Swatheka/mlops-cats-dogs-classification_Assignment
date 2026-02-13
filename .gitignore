@@ -46,8 +46,10 @@ mlartifacts/
 !.dvc/config
 
 # Data
-data/raw/
-data/processed/
+data/raw/*
+!data/raw/*.dvc
+data/processed/*
+!data/processed/*.dvc
 *.csv
 *.h5
 *.hdf5
