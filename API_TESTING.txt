@@ -1,0 +1,85 @@
+
+# ============================================================
+# API TESTING INSTRUCTIONS
+# ============================================================
+
+# 1. Test Health Check Endpoint (GET /health)
+# --------------------------------------------
+# Using curl:
+curl http://localhost:8000/health
+
+# Expected Response:
+# {
+#   "status": "healthy",
+#   "model_loaded": true,
+#   "service": "Cats vs Dogs Classifier"
+# }
+
+
+# 2. Test Root Endpoint (GET /)
+# ------------------------------
+# Using curl:
+curl http://localhost:8000/
+
+# Expected Response:
+# {
+#   "message": "Cats vs Dogs Classifier API",
+#   "version": "1.0",
+#   "endpoints": {...}
+# }
+
+
+# 3. Test Prediction Endpoint (POST /predict)
+# --------------------------------------------
+# Using curl (replace 'test_image.jpg' with actual image path):
+curl -X POST "http://localhost:8000/predict" \
+     -H "accept: application/json" \
+     -H "Content-Type: multipart/form-data" \
+     -F "file=@test_image.jpg"
+
+# Expected Response:
+# {
+#   "predicted_class": "Dog",
+#   "confidence": 0.9876,
+#   "probabilities": {
+#     "Cat": 0.0124,
+#     "Dog": 0.9876
+#   }
+# }
+
+
+# ============================================================
+# POSTMAN TESTING
+# ============================================================
+
+# 1. Health Check:
+#    Method: GET
+#    URL: http://localhost:8000/health
+
+# 2. Root Endpoint:
+#    Method: GET
+#    URL: http://localhost:8000/
+
+# 3. Prediction:
+#    Method: POST
+#    URL: http://localhost:8000/predict
+#    Body: form-data
+#    Key: file
+#    Value: [Select image file]
+
+
+# ============================================================
+# PYTHON TESTING (Alternative)
+# ============================================================
+import requests
+
+# Test health check
+response = requests.get("http://localhost:8000/health")
+print("Health Check:", response.json())
+
+# Test prediction (with image file)
+# with open("test_image.jpg", "rb") as f:
+#     files = {"file": f}
+#     response = requests.post("http://localhost:8000/predict", files=files)
+#     print("Prediction:", response.json())
+

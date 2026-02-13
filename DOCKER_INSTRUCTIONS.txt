@@ -1,0 +1,62 @@
+
+# ============================================================
+# DOCKER BUILD AND RUN INSTRUCTIONS
+# ============================================================
+
+# 1. Build Docker Image
+# ---------------------
+docker build -t cats-dogs-classifier:v1.0 .
+
+# Expected output:
+#   Successfully built <image_id>
+#   Successfully tagged cats-dogs-classifier:v1.0
+
+
+# 2. Verify Image Created
+# ------------------------
+docker images | grep cats-dogs-classifier
+
+
+# 3. Run Docker Container
+# ------------------------
+docker run -d -p 8000:8000 --name cats-dogs-api cats-dogs-classifier:v1.0
+
+# Options explained:
+#   -d                    : Run in detached mode (background)
+#   -p 8000:8000          : Map host port 8000 to container port 8000
+#   --name cats-dogs-api  : Container name
+#   cats-dogs-classifier:v1.0 : Image name and tag
+
+
+# 4. Check Container Status
+# --------------------------
+docker ps
+
+# Expected: Container running with status "Up"
+
+
+# 5. View Container Logs
+# -----------------------
+docker logs cats-dogs-api
+
+
+# 6. Stop Container
+# -----------------
+docker stop cats-dogs-api
+
+
+# 7. Start Container Again
+# -------------------------
+docker start cats-dogs-api
+
+
+# 8. Remove Container (when done)
+# --------------------------------
+docker stop cats-dogs-api
+docker rm cats-dogs-api
+
+
+# 9. Remove Image (optional cleanup)
+# -----------------------------------
+docker rmi cats-dogs-classifier:v1.0
+
