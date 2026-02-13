@@ -42,7 +42,6 @@ mlartifacts/
 # DVC
 .dvc/cache
 .dvc/tmp
-*.dvc
 !.dvc/.gitignore
 !.dvc/config
 
