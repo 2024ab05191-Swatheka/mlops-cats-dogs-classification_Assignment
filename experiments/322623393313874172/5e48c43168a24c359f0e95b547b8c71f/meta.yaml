@@ -1,0 +1,14 @@
+artifact_uri: file:///C:\Users\swath\dataset\mlops_project\experiments/322623393313874172/5e48c43168a24c359f0e95b547b8c71f/artifacts
+end_time: 1770997516565
+entry_point_name: ''
+experiment_id: '322623393313874172'
+lifecycle_stage: active
+run_id: 5e48c43168a24c359f0e95b547b8c71f
+run_name: baseline_cnn_20260213_211032
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1770997305000
+status: 4
+tags: []
+user_id: swath
