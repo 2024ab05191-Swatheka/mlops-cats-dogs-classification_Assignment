@@ -11,6 +11,10 @@ env:
   DOCKER_REGISTRY: ghcr.io
   PYTHON_VERSION: "3.10"
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   test:
     name: Run Unit Tests
@@ -102,7 +106,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}/${{ env.DOCKER_IMAGE_NAME }}
+        images: ${{ env.DOCKER_REGISTRY }}/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME }}
         tags: |
           type=ref,event=branch
           type=sha,prefix={{branch}}-
@@ -130,7 +134,8 @@ jobs:
     name: Publish to Docker Hub
     runs-on: ubuntu-latest
     needs: [test, build]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # Disabled: Requires Docker Hub credentials
+    if: false
     
     steps:
     - name: Checkout repository
@@ -161,7 +166,8 @@ jobs:
     name: Deploy Service
     runs-on: ubuntu-latest
     needs: publish
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # Disabled: Requires deployment infrastructure
+    if: false
     
     steps:
     - name: Checkout repository
@@ -176,7 +182,7 @@ jobs:
     
     - name: Pull latest image
       run: |
-        docker pull ${{ env.DOCKER_REGISTRY }}/${{ github.repository }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+        docker pull ${{ env.DOCKER_REGISTRY }}/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME }}:latest
     
     - name: Stop existing containers
       run: |
@@ -200,7 +206,8 @@ jobs:
     name: Run Smoke Tests
     runs-on: ubuntu-latest
     needs: deploy
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # Disabled: Requires deployed service
+    if: false
     
     steps:
     - name: Checkout repository
