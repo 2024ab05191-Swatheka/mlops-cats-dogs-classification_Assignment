@@ -1,0 +1,64 @@
+# Quick Push to GitHub - Copy & Paste Commands
+
+# ============================================================
+# STEP 1: Go to GitHub and Create New Repository
+# ============================================================
+# 1. Visit: https://github.com/new
+# 2. Repository name: mlops-cats-dogs-classification
+# 3. Description: Complete MLOps pipeline for Cats vs Dogs classification
+# 4. Public/Private: Choose Public
+# 5. Do NOT initialize with README
+# 6. Click "Create repository"
+# 7. Copy the repository URL (will be something like):
+#    https://github.com/YOUR_USERNAME/mlops-cats-dogs-classification.git
+
+
+# ============================================================
+# STEP 2: Run These Commands in PowerShell
+# ============================================================
+
+# Navigate to project
+cd c:\Users\swath\dataset\mlops_project
+
+# Check Git status
+git status
+
+# If not initialized, run:
+# git init
+
+# Add remote (REPLACE YOUR_USERNAME with your actual GitHub username!)
+git remote add origin https://github.com/YOUR_USERNAME/mlops-cats-dogs-classification.git
+
+# Verify remote
+git remote -v
+
+# Stage all files
+git add .
+
+# Commit
+git commit -m "Initial commit: Complete MLOps pipeline with organized structure"
+
+# Set main branch
+git branch -M main
+
+# Push to GitHub
+git push -u origin main
+
+
+# ============================================================
+# STEP 3: Verify on GitHub
+# ============================================================
+# Open your browser and go to:
+# https://github.com/YOUR_USERNAME/mlops-cats-dogs-classification
+#
+# You should see:
+# ✅ All folders: app/, notebooks/, docker/, k8s/, models/, etc.
+# ✅ README.md displayed on homepage
+# ✅ CI/CD workflow in Actions tab
+
+
+# ============================================================
+# DONE! 🎉
+# ============================================================
+# Your GitHub URL to submit:
+# https://github.com/YOUR_USERNAME/mlops-cats-dogs-classification

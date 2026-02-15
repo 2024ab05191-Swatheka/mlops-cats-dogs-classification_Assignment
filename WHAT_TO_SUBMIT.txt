@@ -1,0 +1,128 @@
+===============================================================
+  MLOps CATS VS DOGS - SUBMISSION FILES
+===============================================================
+
+✅ PROJECT CLEANED AND READY FOR SUBMISSION
+
+This folder contains ONLY the essential files for the MLOps assignment.
+
+---------------------------------------------------------------
+CORE FILES INCLUDED:
+---------------------------------------------------------------
+
+📓 Main Notebook:
+   - mlops_cats_dogs_pipeline.ipynb (Complete M1-M5 implementation)
+
+🐍 Python Code:
+   - app.py (FastAPI inference service)
+   - config.py (Configuration settings)
+
+📦 Dependencies & Config:
+   - requirements.txt (Python packages)
+   - pytest.ini (Test configuration)
+   - .gitignore (Git ignore rules)
+   - .dvcignore (DVC ignore rules)
+   - dataset_metadata.json (Dataset information)
+
+🐋 Docker & Deployment:
+   - Dockerfile (Container definition)
+   - docker-compose.yml (Service orchestration)
+
+📁 Folders:
+   - .dvc/ (Data version control configuration)
+   - .git/ (Git repository)
+   - .github/workflows/ci.yml (CI/CD pipeline)
+   - k8s/ (Kubernetes deployment + service manifests)
+   - models/ (Trained model files: best_model.pt)
+   - data/raw/ (PetImages.dvc - dataset version file)
+   - tests/ (Test directory - tests are in notebook)
+
+📚 Documentation:
+   - README.md (Project documentation)
+
+---------------------------------------------------------------
+WHAT'S NOT INCLUDED (Intentionally):
+---------------------------------------------------------------
+
+❌ Large dataset images (use DVC: dvc pull to download)
+❌ MLflow experiments folder (too large)
+❌ Guide/instruction files (not needed for submission)
+❌ Python cache files
+
+---------------------------------------------------------------
+HOW TO CREATE ZIP FOR SUBMISSION:
+---------------------------------------------------------------
+
+Option 1 - Windows GUI:
+  1. Right-click this folder (mlops_project)
+  2. Send to → Compressed (zipped) folder
+  3. Name it: MLOps_CatsDogs_Assignment.zip
+
+Option 2 - PowerShell:
+  cd c:\Users\swath\dataset
+  Compress-Archive -Path "mlops_project" -DestinationPath "MLOps_CatsDogs_Assignment.zip" -Force
+
+---------------------------------------------------------------
+VERIFICATION CHECKLIST:
+---------------------------------------------------------------
+
+Before submitting, verify:
+✓ All files listed above are present
+✓ Notebook has all M1-M5 cells
+✓ Model file exists (models/best_model.pt)
+✓ CI/CD pipeline exists (.github/workflows/ci.yml)
+✓ Kubernetes manifests exist (k8s/*.yaml)
+✓ Docker files exist (Dockerfile, docker-compose.yml)
+✓ README is complete
+✓ Tests are in notebook (M3 section)
+
+---------------------------------------------------------------
+WHAT TO SUBMIT:
+---------------------------------------------------------------
+
+1. MLOps_CatsDogs_Assignment.zip
+   (This entire cleaned project folder)
+
+2. Screen recording video (< 5 minutes)
+   - Show complete workflow from code to deployment
+   - Demonstrate M1-M5 modules
+   - Show code change → CI/CD → deployment
+
+---------------------------------------------------------------
+ALL M1-M5 MODULES IMPLEMENTED:
+---------------------------------------------------------------
+
+✅ M1: Model Development & Experiment Tracking
+    - Git + DVC versioning
+    - CNN model training
+    - MLflow tracking
+    
+✅ M2: Model Packaging & Containerization
+    - FastAPI service
+    - Docker containerization
+    - Health & prediction endpoints
+    
+✅ M3: CI Pipeline
+    - Unit tests (in notebook)
+    - GitHub Actions CI/CD
+    - Automated testing & building
+    
+✅ M4: CD Pipeline & Deployment
+    - Docker Compose deployment
+    - Kubernetes manifests
+    - Smoke tests (in notebook)
+    
+✅ M5: Monitoring & Performance
+    - Logging & metrics code (in notebook)
+    - Performance tracking (in notebook)
+    - Metrics dashboard (in notebook)
+
+---------------------------------------------------------------
+                    READY TO SUBMIT! 🎉
+---------------------------------------------------------------
+
+All unnecessary files removed.
+Project is clean, complete, and submission-ready.
+
+Good luck with your assignment!
+===============================================================

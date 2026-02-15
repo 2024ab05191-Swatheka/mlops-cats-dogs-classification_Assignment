@@ -10,8 +10,9 @@ COPY requirements.txt .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code and model
-COPY app.py .
+# Copy application code and model from new structure
+COPY app/app.py .
+COPY app/config.py .
 COPY models/best_model.pt models/best_model.pt
 
 # Expose port for FastAPI
