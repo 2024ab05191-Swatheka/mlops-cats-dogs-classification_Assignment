@@ -9,6 +9,7 @@ import os
 # Add parent directory to path to import app
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
+# Import app (conftest.py will create dummy model if needed)
 from app.app import app
 
 client = TestClient(app)
