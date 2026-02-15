@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code and model from new structure
 COPY app/app.py .
 COPY app/config.py .
-COPY models/best_model.pt models/best_model.pt
+# Note: Model file not included in Docker image (too large for Git)
+# For production: Download model from model registry or cloud storage
 
 # Expose port for FastAPI
 EXPOSE 8000

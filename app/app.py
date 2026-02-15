@@ -70,10 +70,17 @@ metrics = {
 device = torch.device('cpu')  # Use CPU for inference service
 model = BaselineCNN(num_classes=2).to(device)
 
-# Load trained weights
-checkpoint = torch.load('models/best_model.pt', map_location=device)
-model.load_state_dict(checkpoint['model_state_dict'])
-model.eval()
+# Load trained weights (if available)
+model_loaded = False
+try:
+    checkpoint = torch.load('models/best_model.pt', map_location=device)
+    model.load_state_dict(checkpoint['model_state_dict'])
+    model.eval()
+    model_loaded = True
+except FileNotFoundError:
+    print("Warning: Model file not found. API will run but predictions will not work.")
+    print("For production: Load model from model registry or cloud storage.")
+    model.eval()  # Still set to eval mode
 
 # Define image preprocessing
 transform = transforms.Compose([
@@ -104,7 +111,7 @@ def health_check():
     metrics["health_checks"] += 1
     return {
         "status": "healthy",
-        "model_loaded": True,
+        "model_loaded": model_loaded,
         "service": "Cats vs Dogs Classifier"
     }
 
@@ -128,6 +135,12 @@ async def predict(file: UploadFile = File(...)):
     Accepts: Image file (JPEG/PNG)
     Returns: Class label and probabilities
     """
+    if not model_loaded:
+        raise HTTPException(
+            status_code=503,
+            detail="Model not loaded. Service unavailable for predictions."
+        )
+    
     try:
         # Read and preprocess image
         image_bytes = await file.read()
