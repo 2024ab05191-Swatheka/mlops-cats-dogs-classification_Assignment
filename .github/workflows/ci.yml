@@ -102,11 +102,17 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     
+    - name: Lowercase repository owner
+      id: repo_owner
+      run: echo "owner_lc=${OWNER,,}" >> $GITHUB_OUTPUT
+      env:
+        OWNER: ${{ github.repository_owner }}
+    
     - name: Extract metadata
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ${{ env.DOCKER_REGISTRY }}/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME }}
+        images: ${{ env.DOCKER_REGISTRY }}/${{ steps.repo_owner.outputs.owner_lc }}/${{ env.DOCKER_IMAGE_NAME }}
         tags: |
           type=ref,event=branch
           type=sha,prefix={{branch}}-
@@ -179,9 +185,15 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     
+    - name: Lowercase repository owner
+      id: repo_owner
+      run: echo "owner_lc=${OWNER,,}" >> $GITHUB_OUTPUT
+      env:
+        OWNER: ${{ github.repository_owner }}
+    
     - name: Pull latest image
       run: |
-        docker pull ${{ env.DOCKER_REGISTRY }}/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+        docker pull ${{ env.DOCKER_REGISTRY }}/${{ steps.repo_owner.outputs.owner_lc }}/${{ env.DOCKER_IMAGE_NAME }}:latest
     
     - name: Stop existing containers
       run: |
@@ -191,7 +203,7 @@ jobs:
     - name: Deploy with Docker (local)
       run: |
         docker run -d -p 8000:8000 --name cats-dogs-api \
-          ${{ env.DOCKER_REGISTRY }}/${{ github.repository_owner }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+          ${{ env.DOCKER_REGISTRY }}/${{ steps.repo_owner.outputs.owner_lc }}/${{ env.DOCKER_IMAGE_NAME }}:latest
     
     - name: Wait for service to be ready
       run: |
