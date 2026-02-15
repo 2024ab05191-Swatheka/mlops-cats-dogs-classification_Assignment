@@ -8,6 +8,7 @@ pillow==10.0.0
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 python-multipart==0.0.6
+httpx==0.25.0  # Required for FastAPI TestClient
 
 # MLflow for experiment tracking
 mlflow==2.8.1
