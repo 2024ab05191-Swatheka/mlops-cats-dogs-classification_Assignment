@@ -58,6 +58,14 @@ class BaselineCNN(nn.Module):
 # Initialize FastAPI app
 app = FastAPI(title="Cats vs Dogs Classifier API", version="1.0")
 
+# Metrics tracking
+metrics = {
+    "total_predictions": 0,
+    "cat_predictions": 0,
+    "dog_predictions": 0,
+    "health_checks": 0
+}
+
 # Load model
 device = torch.device('cpu')  # Use CPU for inference service
 model = BaselineCNN(num_classes=2).to(device)
@@ -85,17 +93,32 @@ def root():
         "version": "1.0",
         "endpoints": {
             "/health": "Health check",
-            "/predict": "Prediction endpoint (POST image file)"
+            "/predict": "Prediction endpoint (POST image file)",
+            "/metrics": "Service metrics"
         }
     }
 
 @app.get("/health")
 def health_check():
     """Health check endpoint"""
+    metrics["health_checks"] += 1
     return {
         "status": "healthy",
         "model_loaded": True,
         "service": "Cats vs Dogs Classifier"
+    }
+
+@app.get("/metrics")
+def get_metrics():
+    """Get service metrics"""
+    return {
+        "service": "Cats vs Dogs Classifier",
+        "metrics": {
+            "total_predictions": metrics["total_predictions"],
+            "cat_predictions": metrics["cat_predictions"],
+            "dog_predictions": metrics["dog_predictions"],
+            "health_checks": metrics["health_checks"]
+        }
     }
 
 @app.post("/predict")
@@ -118,14 +141,22 @@ async def predict(file: UploadFile = File(...)):
             confidence, predicted_class = torch.max(probabilities, 1)
 
         # Prepare response
+        predicted_label = class_names[predicted_class.item()]
         result = {
-            "predicted_class": class_names[predicted_class.item()],
+            "predicted_class": predicted_label,
             "confidence": float(confidence.item()),
             "probabilities": {
                 "Cat": float(probabilities[0][0].item()),
                 "Dog": float(probabilities[0][1].item())
             }
         }
+
+        # Update metrics
+        metrics["total_predictions"] += 1
+        if predicted_label == "Cat":
+            metrics["cat_predictions"] += 1
+        else:
+            metrics["dog_predictions"] += 1
 
         return JSONResponse(content=result)
 
