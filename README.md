@@ -8,11 +8,17 @@
 
 **Group 95:**
 Name			        Student ID				            Contribution
+
 ABHINETRI U		        2024ab05215@wilp.bits-pilani.ac.in	100%
+
 S.SELVARAJ		        2024ab05224@wilp.bits-pilani.ac.in	100%
+
 SRINIVASAN.G		    2024ab05156@wilp.bits-pilani.ac.in	100%
+
 SWATHEKA R		        2024ab05191@wilp.bits-pilani.ac.in	100%
+
 VAKADA UMAMAHESWARA RAO	2024ab05222@wilp.bits-pilani.ac.in	100%
+
 
 ## 🎯 Project Overview
 
