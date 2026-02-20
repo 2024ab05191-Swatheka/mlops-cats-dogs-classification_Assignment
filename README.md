@@ -1,6 +1,6 @@
 # MLOps Pipeline: Cats vs Dogs Classification
 
-GitHu Link: https://github.com/2024ab05191-Swatheka/mlops-cats-dogs-classification_Assignment.git
+GitHub Link: https://github.com/2024ab05191-Swatheka/mlops-cats-dogs-classification_Assignment.git
 
 Google Drive : https://drive.google.com/drive/folders/1j3OqX4PV3L917TouYgIRxGTGIkZ4AXJX?usp=drive_link
 Recording Link: https://drive.google.com/file/d/1Ep_N0dZ0B4ixNBunzVdKDQI_MUG8ehOa/view?usp=drive_link
