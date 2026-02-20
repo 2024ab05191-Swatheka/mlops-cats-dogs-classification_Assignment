@@ -6,6 +6,14 @@
 
 **Recording Link:** https://drive.google.com/file/d/1Ep_N0dZ0B4ixNBunzVdKDQI_MUG8ehOa/view?usp=drive_link
 
+**Group 95:**
+Name			        Student ID				            Contribution
+ABHINETRI U		        2024ab05215@wilp.bits-pilani.ac.in	100%
+S.SELVARAJ		        2024ab05224@wilp.bits-pilani.ac.in	100%
+SRINIVASAN.G		    2024ab05156@wilp.bits-pilani.ac.in	100%
+SWATHEKA R		        2024ab05191@wilp.bits-pilani.ac.in	100%
+VAKADA UMAMAHESWARA RAO	2024ab05222@wilp.bits-pilani.ac.in	100%
+
 ## 🎯 Project Overview
 
 End-to-end MLOps pipeline for binary image classification (Cats vs Dogs) for a pet adoption platform. This project demonstrates best practices in ML model development, experiment tracking, versioning, containerization, and CI/CD deployment.
